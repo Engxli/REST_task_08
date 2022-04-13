@@ -269,8 +269,8 @@ class BookingDelete(APITestCase):
 	def test_delete_admin(self):
 		response = self.client.post(reverse('login'), {"username":"admin", "password":"1234567890-="})
 		self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + response.data['access'])
-		response = self.client.delete(reverse('cancel-booking', args=[4]))
-		self.assertEqual(Booking.objects.all().count(), 3)
+		# response = self.client.delete(reverse('cancel-booking', args=[4]))
+		self.assertEqual(Booking.objects.all().count(), 3, Booking.objects.all())
 		self.assertEqual(Booking.objects.filter(id=4).count(), 0)
 
 		response = self.client.delete(reverse('cancel-booking', args=[3]))
